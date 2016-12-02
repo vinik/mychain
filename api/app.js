@@ -108,6 +108,10 @@ server.head('/hello/:name', respond);
 
 server.put('wallet/:user_id', updateUser);
 
+server.get('/query/account', respond); //param account=/p2pkh/XkvtbedzuE1Jh2ujurcruPgn5J9zkneb4i/
+server.get('/info', respond); //{"namespace":"2f0d828a60f15727"}
+server.get('/record', respond); //key=2f3a444154413a696e666f
+
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
 });

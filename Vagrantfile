@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.name = "db"
             docker.image = "mysql"
             docker.pull = true
-            docker.ports = [ "3306:3306" ]
+            docker.ports = [ "33066:3306" ]
             docker.expose = [ 3306 ]
             docker.env = {
                 :MYSQL_ROOT_PASSWORD => "password"
@@ -59,9 +59,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 "app.js"
             ]
             docker.env = {
-                :AUTH0_DOMAIN => "",
-                :AUTH0_CLIENT_ID => "",
-                :AUTH0_CLIENT_SECRET => "",
+                :AUTH0_DOMAIN => "foo",
+                :AUTH0_CLIENT_ID => "bar",
+                :AUTH0_CLIENT_SECRET => "baz",
                 :AUTH0_CALLBACK_URL => "http://localhost:3000/callback"
             }
             docker.link 'openchain2:openchain-server'
