@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.name = "db"
             docker.image = "mysql"
             docker.pull = true
-            docker.ports = [ "33066:3306" ]
+            docker.ports = [ "3306:3306" ]
             docker.expose = [ 3306 ]
             docker.env = {
                 :MYSQL_ROOT_PASSWORD => "password"

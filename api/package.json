@@ -4,9 +4,16 @@
   "description": "My blockchain",
   "main": "app.js",
   "dependencies": {
+    "auth0": "^2.5.0",
     "bitcore-lib": "^0.13.19",
     "bitcore-mnemonic": "^1.1.1",
+    "express-jwt": "^5.1.0",
     "mysql": "^2.12.0",
+    "openchain": "^0.2.4",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.5.2",
+    "passport-restify": "^1.0.1",
+    "request": "^2.79.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {},
