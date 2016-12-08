@@ -79,7 +79,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.volumes = [
                 Dir.pwd + "/web/:/usr/local/apache2/htdocs/"
             ]
-            docker.link 'api:api.local'
+            docker.link 'api:api'
         end
     end
 
@@ -93,7 +93,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.volumes = [
                 Dir.pwd + "/../openchain-wallet/www/:/usr/local/apache2/htdocs/"
             ]
-            docker.link 'api:api.local'
+            docker.link 'openchain2:openchain2'
         end
     end
 

@@ -163,7 +163,7 @@ function queryAccount(req, res, next) {
 
                 var request = require('request');
 
-                request('http://openchain-server:8080/query/account?account='+rows., function (error, response, body) {
+                request('http://openchain-server:8080/query/account?account='+rows.privatekey, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         console.log(body)
                     }
