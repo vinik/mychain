@@ -1,28 +1,6 @@
 var restify = require('restify');
-
-// var Auth0Strategy = require('passport-auth0');
-// var passport = require('passport-restify');
-// var strategy = new Auth0Strategy({
-//     domain:       'vinik.auth0.com',
-//     clientID:     'weRGYvj1bVbHDCBfEsqFA3cssasg0HkF',
-//     clientSecret: 'neZzO9dAdwCxKl8bvTozeIIpQcRClWVFuOWaqTUwfeqOWawqfxrM2OlFxwU1BXrO',
-//     callbackURL:  '/callback'
-// }, function(accessToken, refreshToken, extraParams, profile, done) {
-//     console.log("============ PASSPORT =============");
-//     console.log(accessToken, refreshToken, extraParams, profile);
-//     // accessToken is the token to call Auth0 API (not needed in the most cases)
-//     // extraParams.id_token has the JSON Web Token
-//     // profile has all the information from the user
-//     return done(null, profile);
-// });
-// passport.use(strategy);
-//
-// var auth0_callback_handler = passport.authenticate('auth0', { failureRedirect: '/login' });
-
-// function respond(req, res, next) {
-//   res.send('hello ' + req.params.name);
-//   next();
-// }
+var openchain = require('openchain');
+var client = new openchain.ApiClient("http://openchain-server:8080/");
 
 function generateMnemonics() {
     // var bitcore = require('bitcore-mnemonic');
