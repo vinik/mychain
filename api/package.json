@@ -2,11 +2,12 @@
   "name": "mychain",
   "version": "1.0.0",
   "description": "My blockchain",
-  "main": "app.js",
+  "main": "app2.js",
   "dependencies": {
     "auth0": "^2.5.0",
     "bitcore-lib": "^0.13.19",
     "bitcore-mnemonic": "^1.1.1",
+    "coffee-script": "^1.12.2",
     "express-jwt": "^5.1.0",
     "mysql": "^2.12.0",
     "openchain": "^0.2.4",

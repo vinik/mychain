@@ -40,18 +40,20 @@ function getWalletAssetPath(walletPath) {
     var issuancePath = "/asset" + walletPath;
 }
 
-function queryAccount(walletPath) {
-}
+// function queryAccount(walletPath) {
+// }
 function queryAccount(req, res, next) {
     var id_token = req.authorization.credentials;
-    
+
     client.getAccountRecord(
     // Account path
     walletPath,
     // Asset path
     getWalletAssetPath(walletPath)).then(function (result) {
         console.log("Balance: " + result.balance.toString());
+        next();
     });
+    next();
 }
 
 
@@ -63,15 +65,11 @@ server.use(restify.CORS({
 }));
 server.use(restify.authorizationParser());
 
-// server.use(passport.initialize());
-// server.get('/hello/:name', respond);
-// server.head('/hello/:name', respond);
-
 // server.put('wallet/:user_id', updateUser);
 
 server.get('/query/account/', queryAccount); //param account=/p2pkh/XkvtbedzuE1Jh2ujurcruPgn5J9zkneb4i/
-server.get('/info', queryAccount); //{"namespace":"2f0d828a60f15727"}
-server.get('/record', queryAccount); //key=2f3a444154413a696e666f
+// server.get('/info', queryAccount); //{"namespace":"2f0d828a60f15727"}
+// server.get('/record', queryAccount); //key=2f3a444154413a696e666f
 
 function unknownMethodHandler(req, res) {
   if (req.method.toLowerCase() === 'options') {

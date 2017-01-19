@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.name = "db"
             docker.image = "mysql"
             docker.pull = true
-            docker.ports = [ "3306:3306" ]
+            docker.ports = [ "33067:3306" ]
             docker.expose = [ 3306 ]
             docker.env = {
                 :MYSQL_ROOT_PASSWORD => "password"
@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         api.vm.provider "docker" do |docker|
             docker.name = "api"
             docker.image = "node:4"
-            docker.ports = [ "8081:8080" ]
+            docker.ports = [ "9091:8080" ]
             docker.expose = [ 8080 ]
             docker.remains_running = true
             docker.volumes = [
@@ -55,8 +55,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 "-w", "/src"
             ]
             docker.cmd = [
-                "node",
-                "app.js"
+                "node_modules/.bin/coffee",
+                "server.coffee"
             ]
             docker.env = {
                 :AUTH0_DOMAIN => "foo",
@@ -73,7 +73,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         web.vm.provider "docker" do |docker|
             docker.name = "web"
             docker.image = "httpd"
-            docker.ports = [ "8082:80" ]
+            docker.ports = [ "9092:80" ]
             docker.expose = [ 80 ]
             docker.remains_running = true
             docker.volumes = [
@@ -87,7 +87,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         old_wallet.vm.provider "docker" do |docker|
             docker.name = "oldwallet"
             docker.image = "httpd"
-            docker.ports = [ "8083:80" ]
+            docker.ports = [ "9093:80" ]
             docker.expose = [ 80 ]
             docker.remains_running = true
             docker.volumes = [

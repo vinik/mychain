@@ -43,14 +43,14 @@ $(document).ready(function() {
                     return alert('There was an error getting the profile: ' + err.message);
                 }
 
-                $.ajax({
-                    url: "http://localhost:8081/wallet/" + profile.user_id,
-                    method: 'PUT',
-                    data: 'id_token=' + id_token,
-                    success: function( result ) {
-                        console.log(result);
-                    }
-                });
+                // $.ajax({
+                //     url: "http://localhost:8081/wallet/" + profile.user_id,
+                //     method: 'PUT',
+                //     data: 'id_token=' + id_token,
+                //     success: function( result ) {
+                //         console.log(result);
+                //     }
+                // });
 
                 query_account();
 
