@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             docker.image = "openchain_openchain:latest"
             docker.pull = false
 
-            # docker.ports = [ "8080:8080" ]
+            docker.ports = [ "9097:8080" ]
             docker.expose = [ 8080 ]
             docker.remains_running = true
 
