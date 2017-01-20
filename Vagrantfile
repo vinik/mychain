@@ -55,6 +55,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 "-w", "/src"
             ]
             docker.cmd = [
+                "node_modules/.bin/nodemon",
+                "--exec",
                 "node_modules/.bin/coffee",
                 "server.coffee"
             ]

@@ -64,7 +64,7 @@ $(document).ready(function() {
         var access_token = localStorage.getItem('access_token');
         if (access_token) {
             $.ajax({
-                url: "http://localhost:8081/query/account",
+                url: "http://localhost:9091/query/account",
                 method: "GET",
                 xhrFields: {
                     withCredentials: false
