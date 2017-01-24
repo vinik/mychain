@@ -64,7 +64,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 :AUTH0_DOMAIN => "foo",
                 :AUTH0_CLIENT_ID => "bar",
                 :AUTH0_CLIENT_SECRET => "baz",
-                :AUTH0_CALLBACK_URL => "http://localhost:3000/callback"
+                :AUTH0_CALLBACK_URL => "http://localhost:3000/callback",
+                :MYSQL_HOST => 'db',
+                :MYSQL_USER => 'root',
+                :MYSQL_PASSWORD => 'password',
+                :MYSQL_DATABASE => 'mychain'
+
             }
             docker.link 'openchain2:openchain-server'
             docker.link 'db:db'

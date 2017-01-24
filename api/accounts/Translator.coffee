@@ -1,23 +1,18 @@
+Interactor = require './Interactor'
 
 class Translator
 
-    # constructor: (deps) ->
-    #     @Interactor = deps?.interactor or Interactor
+    constructor: () ->
+        @interactor = new Interactor
 
-    queryAccount: (req, res, next) ->
-        id_token = req.authorization.credentials
-        AuthenticationClient = require('auth0').AuthenticationClient
-        auth0 = new AuthenticationClient
-            domain: 'vinik.auth0.com'
-            clientId: 'weRGYvj1bVbHDCBfEsqFA3cssasg0HkF'
-            secret: 'neZzO9dAdwCxKl8bvTozeIIpQcRClWVFuOWaqTUwfeqOWawqfxrM2OlFxwU1BXrO'
-        
+    queryAccount: (req, res, next) =>
+        console.log 'queryAccount'
+        params =
+            id_token: req.authorization.credentials
 
-        auth0.getProfile id_token, (err, userInfo) ->
-            console.log userInfo
+        console.log 'interactor'
+        @interactor.validateLogin params, (err, response) ->
+            # TODO error treatment
             next()
-        
-
-    
 
 module.exports = Translator
