@@ -9,13 +9,15 @@
     "bitcore-mnemonic": "^1.1.1",
     "coffee-script": "^1.12.2",
     "express-jwt": "^5.1.0",
+    "lodash": "^4.17.4",
     "mysql": "^2.12.0",
     "openchain": "^0.2.4",
     "passport": "^0.3.2",
     "passport-auth0": "^0.5.2",
     "passport-restify": "^1.0.1",
     "request": "^2.79.0",
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "waferpie-utils": "git://github.com/s2way/waferpie-utils.git"
   },
   "devDependencies": {},
   "scripts": {
