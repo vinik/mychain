@@ -69,4 +69,6 @@ class Adapter
 
         return obj
 
+    getAssets: (id) ->
+
 module.exports = Adapter
