@@ -19,7 +19,9 @@
     "restify": "^4.3.0",
     "waferpie-utils": "git://github.com/s2way/waferpie-utils.git"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "~1.11.0"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "mocha test"

@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "openchain_server" do |server|
         server.vm.provider "docker" do |docker|
             docker.name = "openchain2"
-            docker.image = "openchain_openchain:latest"
+            docker.image = "openchainserver_openchain:latest"
             docker.pull = false
 
             docker.ports = [ "9097:8080" ]
@@ -68,7 +68,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 :MYSQL_HOST => 'db',
                 :MYSQL_USER => 'root',
                 :MYSQL_PASSWORD => 'password',
-                :MYSQL_DATABASE => 'mychain'
+                :MYSQL_DATABASE => 'mychain',
+                :OPENCHAIN_URL => 'http://openchain-server:8080'
 
             }
             docker.link 'openchain2:openchain-server'

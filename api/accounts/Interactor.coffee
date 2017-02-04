@@ -16,5 +16,8 @@ class Interactor
 
         @entity.getProfile params, translatorCallback
 
+    queryAccount: (params, translatorCallback) =>
+        @entity.queryAccount params, translatorCallback
+
 
 module.exports = Interactor

@@ -9,8 +9,12 @@ class Translator
         params =
             id_token: req.authorization.credentials
 
-        @interactor.validateLogin params, (err, response) ->
+        @interactor.validateLogin params, (err, resp) =>
             # TODO error treatment
-            next()
+            # console.log err, response
+            @interactor.queryAccount resp, (error, response) =>
+                # TODO error treatment
+                console.log 'Translator queryAccount Interactor callback', error, response
+                next()
 
 module.exports = Translator
