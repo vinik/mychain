@@ -12,7 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "openchain_server" do |server|
         server.vm.provider "docker" do |docker|
             docker.name = "openchain2"
-            docker.image = "openchainserver_openchain:latest"
+            docker.image = "openchain_openchain:latest"
+            # docker.image = "openchainserver_openchain:latest"
             docker.pull = false
 
             docker.ports = [ "9097:8080" ]
