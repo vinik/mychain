@@ -35,6 +35,7 @@ class Adapter
 
             ourUser =
                 user_id: userInfo.user_id
+                email: userInfo.email
 
             console.log ourUser
 
@@ -70,7 +71,7 @@ class Adapter
     queryAccount: (account, callback) ->
         console.log  "Adapter.queryAccount", account
 
-        address = @getWalletAddress account.user_id
+        address = @getWalletAddress account.email
 
         @openchainClient.getAccountRecords(address.accountPath, address.assetPath).then( (result)->
             console.log 'AccountRecords', result

@@ -15,6 +15,7 @@ class Translator
             @interactor.queryAccount resp, (error, response) =>
                 # TODO error treatment
                 console.log 'Translator queryAccount Interactor callback', error, response
+                res.json 200, response
                 next()
 
 module.exports = Translator
