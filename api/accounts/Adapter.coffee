@@ -24,8 +24,9 @@ class Adapter
             secret: params.auth0.secret
 
         auth0.getProfile params.id_token, (err, userInfo) =>
-            # console.log err, userInfo
+            console.log err, userInfo
             # TODO error handling
+            # console.log err if err
 
             userInfo = JSON.parse userInfo
             # console.log userInfo

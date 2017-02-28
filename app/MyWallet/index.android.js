@@ -6,35 +6,63 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 
 import Auth0Lock from 'react-native-lock';
+var lockOptions = {
+    scope: 'openid email'
+}
+var lock = new Auth0Lock({clientId: 'weRGYvj1bVbHDCBfEsqFA3cssasg0HkF', domain: 'vinik.auth0.com', options: lockOptions});
 
-var lock = new Auth0Lock({clientId: 'YNEBjn3iaKQtHeO0aGXra7a1FLQXR9KU', domain: 'vinik.auth0.com'});
+var appState = {
+    profile: {
+        name: "",
+        email: ""
+    },
+    token: {
+        idToken: ""
+    }
+}
 
-
+var serverUrl = 'http://192.168.1.125:9091';
 
 export default class MyWallet extends Component {
     constructor(props) {
     super(props);
-    this.state = {profile: {name: ""}};
+    this.state = appState;
 
     lock.show({}, (err, profile, token) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      // Authentication worked!
-      console.log('Logged in with Auth0!');
+        if (err) {
+            console.log(err);
+            return;
+        }
 
-      // this.state.profile = profile;
-      // this.state.token = token;
+        // Authentication worked!
+        console.log('Logged in with Auth0!');
+        console.log(token);
 
-      this.setState({profile: profile})
+        appState.profile = profile;
+        appState.token = token;
+        this.setState(appState);
+
+        fetch(serverUrl + '/query/account', {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + appState.token.accessToken
+            }
+        }).then((response) => response.json())
+        .then((responseJson) => {
+            //appState.assets = responseJson;
+            //this.setState(appState);
+            console.log(responseJson);
+        }).catch((error) => {
+            console.error(error);
+        });
+
     });
 
   }
@@ -42,6 +70,8 @@ export default class MyWallet extends Component {
     return (
       <View style={styles.container}>
         <Text>Welcome {this.state.profile.name}</Text>
+        <Text>{this.state.profile.email}</Text>
+        <Text>token: {this.state.token.idToken}</Text>
       </View>
     );
   }
