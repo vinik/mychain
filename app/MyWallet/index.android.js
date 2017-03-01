@@ -20,9 +20,15 @@ import WelcomeView from './welcome-view';
 import WalletView from './wallet-view';
 import TransactionView from './transaction-view';
 
-
+var appState = {
+    dataSource: []
+}
 
 class MyWallet extends Component {
+    constructor(props) {
+        super(props);
+        this.state = appState;
+    }
     render() {
         return (
             <Navigator style={styles.navigator}
