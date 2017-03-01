@@ -12,11 +12,108 @@ import {
     Button,
     Text,
     View,
-    ListView
+    Navigator,
+    TouchableHighlight
 } from 'react-native';
-import Auth0Lock from 'react-native-lock';
-import QRCode from 'react-native-qrcode';
 
+import WelcomeView from './welcome-view';
+import WalletView from './wallet-view';
+import TransactionView from './transaction-view';
+
+
+
+class MyWallet extends Component {
+    render() {
+        return (
+            <Navigator style={styles.navigator}
+                initialRoute={{ name: "Welcome"}}
+                renderScene= { this.renderScene }
+                navigationBar={
+                    <Navigator.NavigationBar
+                    style={ styles.nav }
+                    routeMapper={NavigationBarRouteMapper} />
+                }
+            />
+        );
+    }
+
+    renderScene(route, navigator) {
+        if (route.name == "Welcome") {
+            return <WelcomeView navigator={navigator} {...route.passProps} />
+        }
+        if (route.name == "Wallet") {
+            return <WalletView navigator={navigator} {...route.passProps} />
+        }
+        if (route.name == "Transaction") {
+            return <TransactionView navigator={navigator} {...route.passProps} />
+        }
+    }
+}
+
+var NavigationBarRouteMapper = {
+    LeftButton(route, navigator, index, navState) {
+        if(index > 0) {
+            return (
+                <TouchableHighlight
+                    underlayColor="transparent"
+                    onPress={
+                        () => {
+                            if (index > 0) {
+                                navigator.pop()
+                            }
+                        }
+                    }>
+                    <Text style={ styles.leftNavButtonText }>Back</Text>
+                </TouchableHighlight>
+            )
+        }
+        else {
+            return null
+        }
+    },
+
+    RightButton(route, navigator, index, navState) {
+        return null
+    },
+
+    Title(route, navigator, index, navState) {
+        return <Text style={ styles.title }>MyWallet</Text>
+    }
+};
+
+const styles = StyleSheet.create({
+    navigator: {
+        flex: 1,
+    },
+    title: {
+        marginTop:4,
+        fontSize:24
+    },
+    leftNavButtonText: {
+        fontSize: 18,
+        marginLeft:13,
+        marginTop:2
+    },
+    rightNavButtonText: {
+        fontSize: 18,
+        marginRight:13,
+        marginTop:2
+    },
+    nav: {
+        height: 60,
+        backgroundColor: '#efefef'
+    }
+});
+
+
+
+
+
+
+
+
+
+/*
 var lockOptions = {
     scope: 'openid email'
 }
@@ -178,5 +275,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+*/
 
 AppRegistry.registerComponent('MyWallet', () => MyWallet);
