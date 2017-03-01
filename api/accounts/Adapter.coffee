@@ -6,12 +6,7 @@ bitcore = require 'bitcore-lib'
 
 class Adapter
     constructor: (deps) ->
-        @QueryBuilder = deps?.util?.queryBuilder || require('waferpie-utils').QueryBuilder
-        @PersistenceConnector = deps?.connector?.mysql || require('waferpie-utils').Connectors.MySQL
         @hosts = deps?.hosts || require '../config/hosts'
-        @mysqlParams = @hosts.mysql
-        @connector = new @PersistenceConnector @mysqlParams
-        @connector.changeTable 'wallets'
         @AuthenticationClient = auth0.AuthenticationClient
         @OpenchainApiClient = require('openchain').ApiClient
         @openchainClient = new @OpenchainApiClient @hosts.openchain.url
@@ -38,35 +33,8 @@ class Adapter
                 email: userInfo.email
 
             console.log ourUser
+            entityCallback(null, ourUser)
 
-            @findAccount ourUser, (error, success) =>
-                console.log  "findAccount callback: ", error, success
-                return callback error: err if err?
-                ourUser.passphrase = success.passphrase
-                ourUser.privatekey = success.privatekey
-                return entityCallback(null, ourUser) if !_.isEmpty success
-                @saveAccount ourUser, ->
-                    console.log ourUser
-                    entityCallback(null, ourUser)
-
-
-    saveAccount: (userData, callback) ->
-        console.log "saveAccount", userData
-        mnems = @generateMnemonics()
-
-        userData.passphrase = mnems.code
-        userData.privatekey = mnems.pkey
-
-        @connector.create userData, (err, success) ->
-            return callback error: err if err?
-            callback()
-
-    findAccount: (account, callback) ->
-        console.log 'findAccount', account.user_id
-        # find
-        @connector.readByField 'user_id', account.user_id, (err, success) ->
-            return callback err if err?
-            callback null, success
 
     queryAccount: (account, callback) ->
         console.log  "Adapter.queryAccount", account
