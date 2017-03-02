@@ -15,7 +15,7 @@ var TransactionView = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-
+        <Text>Transaction</Text>
       </View>
     );
   }

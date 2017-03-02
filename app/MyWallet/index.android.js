@@ -12,6 +12,7 @@ import {
     Button,
     Text,
     View,
+    ListView,
     Navigator,
     TouchableHighlight
 } from 'react-native';
@@ -24,10 +25,12 @@ var appState = {
     dataSource: []
 }
 
+
 class MyWallet extends Component {
     constructor(props) {
         super(props);
-        this.state = appState;
+
+
     }
     render() {
         return (
